@@ -8,52 +8,55 @@
     <relativePath>../pom.xml</relativePath>
   </parent>
 
-  <artifactId>nuxeo-distribution-cap-gatling-tests</artifactId>
-  <name>Nuxeo CAP Gatling Bench</name>
-  <description>Gatling bench on Nuxeo CAP</description>
+  <artifactId>gatling-elb-bug</artifactId>
+  <groupId>org.nuxeo.sandbox</groupId>
+  <name>Gatling ELB bug reproducer</name>
   <packaging>pom</packaging>
 
   <properties>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
     <encoding>UTF-8</encoding>
+    <gatling.version>2.1.7</gatling.version>
+    <scala.version>2.11.7</scala.version>
+    <scala-maven-plugin.version>3.2.2</scala-maven-plugin.version>
   </properties>
 
   <dependencies>
     <dependency>
       <groupId>io.gatling</groupId>
       <artifactId>gatling-http</artifactId>
+      <version>${gatling.version}</version>
     </dependency>
     <dependency>
       <groupId>io.gatling</groupId>
       <artifactId>gatling-app</artifactId>
+      <version>${gatling.version}</version>
     </dependency>
     <dependency>
       <groupId>io.gatling</groupId>
       <artifactId>gatling-recorder</artifactId>
+      <version>${gatling.version}</version>
     </dependency>
     <dependency>
       <groupId>io.gatling</groupId>
       <artifactId>gatling-core</artifactId>
+      <version>${gatling.version}</version>
     </dependency>
     <dependency>
       <groupId>io.gatling</groupId>
       <artifactId>gatling-redis</artifactId>
+      <version>${gatling.version}</version>
     </dependency>
     <dependency>
       <groupId>org.scala-lang</groupId>
       <artifactId>scala-library</artifactId>
+      <version>${scala.version}</version>
     </dependency>
     <dependency>
       <groupId>io.gatling.highcharts</groupId>
       <artifactId>gatling-charts-highcharts</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.nuxeo.ecm.distribution</groupId>
-      <artifactId>nuxeo-distribution-tomcat</artifactId>
-      <classifier>nuxeo-cap</classifier>
-      <type>zip</type>
-      <scope>provided</scope>
+      <version>${gatling.version}</version>
     </dependency>
   </dependencies>
   <build>
@@ -153,4 +156,32 @@
       </activation>
     </profile>
  </profiles>
+      <repositories>
+        <repository>
+          <id>internal-releases</id>
+          <url>
+            http://maven.in.nuxeo.com/nexus/content/groups/internal-releases
+          </url>
+          <releases>
+            <enabled>true</enabled>
+          </releases>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+        </repository>
+        <repository>
+          <id>internal-snapshots</id>
+          <url>
+            http://maven.in.nuxeo.com/nexus/content/groups/internal-snapshots
+          </url>
+          <releases>
+            <enabled>false</enabled>
+          </releases>
+          <snapshots>
+            <enabled>true</enabled>
+            <updatePolicy>always</updatePolicy>
+          </snapshots>
+        </repository>
+      </repositories>
+
 </project>
